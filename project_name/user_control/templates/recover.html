@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% from 'macros.html' import password_form with context %}
+{% block title %}{{ _('Change password') }}{% endblock %}
+{% block body %}
+    <div class="well col-md-8 col-md-offset-2">
+        <h1 class="text-center">{{ _('Recover your password') }}</h1>
+        <br/>
+
+        {{ password_form(form, url_for('user_mng.recover'), _('Recover')) }}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% from 'macros.html' import email_password_form with context %}
+{% block title %}{{ _('Sign Up') }}{% endblock %}
+{% block body %}
+    <div class="well col-md-8 col-md-offset-2">
+        <h1 class="text-center">{{ _('Sign up') }}!</h1>
+        <br/>
+
+        {{ email_password_form(form, url_for('user_mng.sign_up'), _('Sign up')) }}
+
+    </div>
+{% endblock %}

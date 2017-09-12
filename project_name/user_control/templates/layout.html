@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">{{ _('Toggle navigation') }}</span>{{ _('Menu') }}<i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="{{ url_for('index') }}">{{ _('Project Name') }}</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes" aria-expanded="false">
+                                {% if current_user.is_authenticated %}
+                                    {{ current_user.email }}
+                                {% else %}
+                                    {{ _('Account') }}
+                                {% endif %}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="user_mng">
+                                <li><a href="{{ url_for('user_mng.sign_up') }}">{{ _('Sign up') }}</a></li>
+                                <li><a href="{{ url_for('user_mng.login') }}">{{ _('Log in') }}</a></li>
+                                <li><a href="{{ url_for('user_mng.other_logins') }}">{{ _('Other logins') }}</a></li>
+                                <li><a href="{{ url_for('user_mng.logout') }}">{{ _('Log out') }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <br/>
+        <br/>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="row">
+                    {% for message in messages %}
+                    <br/>
+                    <div class="alert alert-dismissible alert-info col-md-offset-3 col-md-6">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <p>{{ message }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <br/>
+        <div class="container-fluid">
+            <div class="row" >
+            {% block body %}
+            {% endblock %}
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted text-center">{{ _('Project_name by') }} <a href="">You</a></p>
+            </div>
+        </footer>
+    </body>
+</html>

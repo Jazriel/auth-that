@@ -1,0 +1,68 @@
+{#
+    Macros.html
+    ~~~~~~~~~~~
+
+    File with some useful jinja macros, needs bootstrap.
+    Is part of the view in the MVC architecture.
+
+
+#}
+{% macro email_field(form) %}
+<div class="form-group">
+    {{ form.email.label(class='col-md-5 col-sm-5 col-xs-4 text-right') }}
+    <div class="col-md-3 col-sm-4 col-xs-8">
+        {{ form.email(placeholder=_('email@company.domain'), class='form-control')}}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro password_field(form) %}
+<div class="form-group">
+    {{ form.password.label(class='col-md-5 col-sm-5 col-xs-4 text-right') }}
+    <div class="col-md-3 col-sm-4 col-xs-8">
+        {{ form.password(class='form-control')}}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro submit_button(value_) %}
+<div class="form-group">
+   <button type="submit" class="btn btn-primary btn-sm center-block" value="{{ value_ }}">{{ value_ }}</button>
+</div>
+{% endmacro %}
+
+{% macro email_password_form(form, action, button_value) %}
+<form class="form-horizontal" action="{{ action }}" method="post" id="form">
+    <fieldset>
+        {{ email_field(form) }}
+        {{ password_field(form) }}
+        <br/>
+        {{ form.csrf_token }}
+        {{ submit_button(button_value) }}
+    </fieldset>
+</form>
+{% endmacro %}
+
+{% macro email_form(form, action, button_value) %}
+<form class="form-horizontal" action="{{ action }}" method="post" id="form">
+    <fieldset>
+        {{ email_field(form) }}
+        <br/>
+        {{ form.csrf_token }}
+        {{ submit_button(button_value) }}
+    </fieldset>
+</form>
+{% endmacro %}
+
+{% macro password_form(form, action, button_value) %}
+<form class="form-horizontal" action="{{ action }}" method="post" id="form">
+    <fieldset>
+        {{ password_field(form) }}
+        <br/>
+        {{ form.csrf_token }}
+        {{ submit_button(button_value) }}
+    </fieldset>
+</form>
+{% endmacro %}
+
+

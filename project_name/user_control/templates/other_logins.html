@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block title %}{{ _('Log In') }}{% endblock %}
+{% block body %}
+    <div class="well col-md-8 col-md-offset-2">
+        <h1 class="text-center">{{ _('Other logins') }}</h1>
+        <br/>
+        <a href="{{ url_for('oauth_google.login') }}"><button type="button" class="btn btn-info" >Google</button></a>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% from 'macros.html' import email_form with context %}
+{% block title %}{% _('Change Password') %}{% endblock %}
+{% block body %}
+    <div class="well col-md-8 col-md-offset-2">
+        <h1 class="text-center">{{ _('Change my password') }}</h1>
+        <br/>
+        <p class="text-center">{{ _('This will send an email with a link that can be used within one day.') }}</p>
+        <br/>
+
+        {{ email_form(form, url_for('user_mng.reset'), _('Change Password')) }}
+
+    </div>
+{% endblock %}
