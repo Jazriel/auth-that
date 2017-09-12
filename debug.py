@@ -7,6 +7,6 @@ if __name__ == '__main__':
         raise RuntimeError('Debug must have at least one argument (Database uri)')
 
     if argv[1] == 'lite':
-        debug('sqlite:///'+argv[2])
+        debug('sqlite:///'+argv[2])  # pathtoproject/projectdir/user.db should work for debugging and low volume apps.
     else:
         debug(argv[1])
