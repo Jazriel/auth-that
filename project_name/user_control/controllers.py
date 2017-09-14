@@ -78,6 +78,7 @@ def check_and_login(password, user):
 @user_mng.route('/logout')
 def logout():
     """Logs the user out, has no effect if there was no one logged in."""
+    flash(_('Logged out successfully.'))
     logout_user()
     session.clear()
     return redirect(url_for('index'))
@@ -130,6 +131,9 @@ def sign_up():
         flash(_('Signed up successfully.'))
 
         return redirect(url_for('user_mng.login'))
+
+    if form.is_submitted():
+        flash(_('Email or password were not valid.'))
 
     return render_template(view, form=form)
 

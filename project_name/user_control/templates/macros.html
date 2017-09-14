@@ -11,7 +11,7 @@
 <div class="form-group">
     {{ form.email.label(class='col-md-5 col-sm-5 col-xs-4 text-right') }}
     <div class="col-md-3 col-sm-4 col-xs-8">
-        {{ form.email(placeholder=_('email@company.domain'), class='form-control')}}
+        {{ form.email(placeholder=_('email@company.domain'), type='email', class='form-control')}}
     </div>
 </div>
 {% endmacro %}

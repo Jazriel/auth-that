@@ -6,5 +6,8 @@
         <h1 class="text-center">{{ _('Login') }}</h1>
         <br/>
         {{ email_password_form(form, url_for('user_mng.login'), _('Login')) }}
+        <p class="text-muted text-center">
+            {{ _("If you do not have an account ") }}<a href="{{ url_for('user_mng.sign_up') }}">{{ _('Sign up') }}</a>
+        </p>
     </div>
 {% endblock %}
